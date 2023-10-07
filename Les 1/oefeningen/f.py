@@ -42,9 +42,9 @@ while i < len(kritischePunten) :
 
     if i == 0:
 
-        if sign(f(kritischePunten[i]-0.001)) == 1:
+        if f(kritischePunten[i]-1) > 0:
             tekenschema.append("+")
-        if sign(f(kritischePunten[i]-0.001)) == -1:
+        if f(kritischePunten[i]-1) < 0:
             tekenschema.append("-")
 
     if kritischePunten[i] in nulwNoemer:
@@ -52,9 +52,9 @@ while i < len(kritischePunten) :
     else:
         tekenschema.append("0")
 
-    if sign(f(kritischePunten[i]+0.001)) == 1:
+    if f(kritischePunten[i]+1) > 0:
         tekenschema.append("+")
-    if sign(f(kritischePunten[i]+0.001)) == -1:
+    if f(kritischePunten[i]+1) < 0:
         tekenschema.append("-")
 
     i+=1
@@ -122,7 +122,16 @@ for a in verticaleAsymptoten:
             rechte = a*x
             print("De rechte met vergelijking y =", rechte, "is een SA")
 
+print("")
 
 # afgeleide functie van f
 def afgeleide(x0): return sp.diff(f(x),x).subs(x,x0)
 
+nulwaardenAfgeleide = sp.solve(afgeleide(x))
+print("Nulwaarden afgeleide", nulwaardenAfgeleide)
+
+# tweede afgeleide functie van f
+def tweedeAfgeleide(x0): return sp.diff(f(x),x, 2).subs(x,x0)
+
+nulwaardenTweedeAfgeleide = sp.solve(tweedeAfgeleide(x))
+print("Nulwaarden afgeleide", nulwaardenTweedeAfgeleide)
