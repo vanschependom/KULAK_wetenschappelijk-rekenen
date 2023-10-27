@@ -1,3 +1,4 @@
+
 import sympy as sp
 
 def asymptootOneindig(f):
