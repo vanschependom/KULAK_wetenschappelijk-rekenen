@@ -5,7 +5,19 @@ def f(x): return (x**3)/(x**2-1)
 def g(x): return (x**3-x**2+x-1)/(x**3+x**2-x-1)
 
 def asymptootOneindig(f):
+    """
+    Deze functie berekent of een gegeven functie horizontale, schuine, of helemaal geen asymptoten heeft.
 
+    Parameters
+    ----------
+    f : function
+        De functie waarvan je de asymptoten wil berekenen
+
+    Returns
+    -------
+    string
+        Er wordt duidelijk gemaakt aan de gebruiker of de functie al dan niet asymptoten heeft en eventueel wordt de bijhorende vergelijking ook gegeven in deze string.
+    """    
     hor = sp.limit(f(x),x,sp.oo)
 
     if hor.is_finite:
@@ -28,7 +40,15 @@ def asymptootOneindig(f):
         
 
 def klasseerNulpunten(f):
+    """
+    Deze functie klasseert alle nulpunten van zowel de teller als de noemer van een gegeven functie.
+    Vervolgens drukt de functie de nulpunten af, samen met hun aard: perforatie, asymptoot of nulpunt van de functie.
 
+    Parameters
+    ----------
+    f : function
+        De functie waarvan je de nulpunten wil klasseren.
+    """    
     nulpTeller = set(sp.solve(sp.numer(f(x))))
     nulpNoemer = set(sp.solve(sp.denom(f(x))))
 
@@ -58,7 +78,16 @@ def klasseerNulpunten(f):
 
 
 def klasseerKritiekePunten(f):
-
+    """
+    Deze functie klasseert de kritieke punten, namelijk de nulwaarden van de eerste en tweede afgeleide, van een gegeven functie f.
+    Vervolgens worden de kritieke punten afgedrukt, samen met hun aard: minimum, maximum of buigpunt.
+    Indien een kritiek punt een buigpunt is, wordt de vergelijking van de buigraaklijn ook afgedrukt.
+    
+    Parameters
+    ----------
+    f : function
+        De functie waarvan je de krtieke punten wil klasseren.
+    """    
     def df(x0): return sp.diff(f(x),x).subs(x,x0)
     def d2f(x0): return sp.diff(df(x),x).subs(x,x0)
     def d3f(x0): return sp.diff(d2f(x),x).subs(x,x0)
@@ -98,27 +127,18 @@ def klasseerKritiekePunten(f):
     
 
 def functieVerloop(f):
+    """
+    Deze functie bundelt alle functies die nodig zijn voor het analyseren van het functieverloop van een bepaalde functie.
+    Alles wordt duidelijk weergegeven aan de gebruiker.
 
+    Parameters
+    ----------
+    f : function
+        De functie waarvan je het functieverloop wil onderzoeken.
+    """    
     print("\n----------------------------")
     print(f"Analyse van de grafiek met vergelijking y = {f(x)}")
     print(asymptootOneindig(f))
     print("Merkwaardige punten:")
     klasseerNulpunten(f)
     klasseerKritiekePunten(f)
-
-
-functieVerloop(f)
-functieVerloop(g)
-
-# print(asymptootOneindig(f))
-# klasseerNulpunten(f)
-
-# print("")
-
-# print(asymptootOneindig(g))
-# klasseerNulpunten(g)
-
-# print("")
-
-# klasseerKritiekePunten(f)
-# klasseerKritiekePunten(g)
