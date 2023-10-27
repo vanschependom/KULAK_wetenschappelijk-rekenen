@@ -1,8 +1,4 @@
 import sympy as sp
-x = sp.symbols('x', real=True)
-
-def f(x): return (x**3)/(x**2-1)
-def g(x): return (x**3-x**2+x-1)/(x**3+x**2-x-1)
 
 def asymptootOneindig(f):
     """
@@ -18,6 +14,7 @@ def asymptootOneindig(f):
     string
         Er wordt duidelijk gemaakt aan de gebruiker of de functie al dan niet asymptoten heeft en eventueel wordt de bijhorende vergelijking ook gegeven in deze string.
     """    
+    x = sp.symbols('x', real=True)
     hor = sp.limit(f(x),x,sp.oo)
 
     if hor.is_finite:
@@ -49,6 +46,7 @@ def klasseerNulpunten(f):
     f : function
         De functie waarvan je de nulpunten wil klasseren.
     """    
+    x = sp.symbols('x', real=True)
     nulpTeller = set(sp.solve(sp.numer(f(x))))
     nulpNoemer = set(sp.solve(sp.denom(f(x))))
 
@@ -88,6 +86,7 @@ def klasseerKritiekePunten(f):
     f : function
         De functie waarvan je de krtieke punten wil klasseren.
     """    
+    x = sp.symbols('x', real=True)
     def df(x0): return sp.diff(f(x),x).subs(x,x0)
     def d2f(x0): return sp.diff(df(x),x).subs(x,x0)
     def d3f(x0): return sp.diff(d2f(x),x).subs(x,x0)
@@ -136,12 +135,10 @@ def functieVerloop(f):
     f : function
         De functie waarvan je het functieverloop wil bepalen.
     """    
+    x = sp.symbols('x', real=True)
     print("\n----------------------------")
     print(f"Analyse van de grafiek met vergelijking y = {f(x)}")
     print(asymptootOneindig(f))
     print("Merkwaardige punten:")
     klasseerNulpunten(f)
     klasseerKritiekePunten(f)
-
-functieVerloop(f)
-functieVerloop(g)
