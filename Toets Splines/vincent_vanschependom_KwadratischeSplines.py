@@ -26,7 +26,7 @@ def rechte(begin, einde):
     x2 = einde[0]
     y2 = einde[1]
     
-    rico = int((y2-y1)/(x2-x1))
+    rico = (y2-y1)/(x2-x1)
     
     def g(x): return rico*(x-x1) + y1
     
@@ -43,7 +43,7 @@ def parabool(begin, einde, rico):
         Het beginpunt is een lijst met een x-coördinaat en een y-coördinaat.
     einde : list[int1,int2]
         Het eindpunt is een lijst met een x-coördinaat en een y-coördinaat.
-    rico : int
+    rico : int/sympy.core.symbol.Symbol
         De rico voor de parabool in het beginpunt.
 
     Returns
@@ -213,8 +213,3 @@ def figuur(X,Y):
  
     plt.scatter(X,Y,c='k')
     plt.savefig('splinesVanSchependomVincent.pdf')
-
-
-
-
-
