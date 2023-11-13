@@ -165,6 +165,7 @@ def optimaal(X, Y):
     plt.plot(xx, yy)
     plt.show()
     plt.savefig('oppervlakteVanSchependomVincent.pdf')
+    plt.close()
 
     return extremum
 
